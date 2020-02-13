@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Question } from 'src/Interfaces/Question';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FlashcardserviceService } from '../flashcardservice.service';
 
 
@@ -23,7 +23,8 @@ export class AddCardComponent implements OnInit {
     
 
 
-    constructor(private service: FlashcardserviceService) {}
+    constructor(private service: FlashcardserviceService,
+      private formBuilder: FormBuilder) {}
 
 
     ngOnInit() {
