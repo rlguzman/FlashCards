@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Question } from 'src/Interfaces/Question';
-
+import { FormGroup,FormBuilder,Validators, FormControl} from '@angular/forms';
 import { FlashcardserviceService } from '../flashcardservice.service';
 
 
@@ -23,13 +23,14 @@ export class AddCardComponent implements OnInit {
     
 
 
-    constructor(private service: FlashcardserviceService) {}
+    constructor(private service: FlashcardserviceService,
+      private formBuilder: FormBuilder) {}
 
 
     ngOnInit() {
-      this.form = this.formBuilder.group({
-        question: this.formBuilder.control('',Validators.required),
-      });
+      // this.form = this.formBuilder.group({
+      //   questionText: this.formBuilder.control('',Validators.required),
+      // });
     }
 
     BackToSameCard(): void {

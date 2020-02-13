@@ -1,7 +1,7 @@
 <div class="col-md-9 m-0 p-0">
     <div class="fcard">
 
-        <form class="m-0 p-0" (ngSubmit)="AddFlashcard()">
+        <form class="m-0 p-0"  (ngSubmit)="AddFlashcard()">
             <mat-form-field>
                 <input matInput placeholder="Subject" style="display: inline;" [(ngModel)]="question.subject" name="subject" required>
             </mat-form-field>
@@ -14,7 +14,15 @@
             </mat-form-field>
             <mat-form-field style="display: inline;">
                 <div class="">
-                    <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Question" [(ngModel)]="question.questionText" name="questionText" required></textarea>
+                    <textarea cdkTextareaAutosize 
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1" 
+                    cdkAutosizeMaxRows="5" 
+                    matInput placeholder="Question" 
+                    [(ngModel)]="question.questionText" 
+                    name="questionText" 
+                   
+                    required></textarea>
                 </div>
             </mat-form-field>
             <mat-form-field style="display: inline;">
@@ -22,7 +30,7 @@
                     <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize"cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matInput placeholder="Answer" [(ngModel)]="question.answer" name="answer" required></textarea>
                 </div>
             </mat-form-field>
-            <button (click)="AddFlashcard()" class="nxtbtn">Submit</button>
+            <button (click)="AddFlashcard()"  class="nxtbtn">Submit</button>
         </form>
         <button type="submit" class="backbtn">Back</button>
     </div>
