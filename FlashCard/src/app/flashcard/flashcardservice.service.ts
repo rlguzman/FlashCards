@@ -10,7 +10,7 @@ export class FlashcardserviceService {
 
   constructor(private http: HttpClient) {}
 
-  baseUrl: string = 'https://localhost:5001';
+  baseUrl: string = 'https://flashCard_api:5001';
 
   httpOptions = {
     headers: new HttpHeaders({

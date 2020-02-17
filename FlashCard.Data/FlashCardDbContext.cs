@@ -10,7 +10,7 @@ namespace FlashCard.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("server=localhost;database=postgres;user id=postgres;password=postgres");
+            optionsBuilder.UseNpgsql("server=flashCard_data;database=postgres;user id=postgres;password=postgres");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace FlashCard.Data
             modelBuilder.Entity<Question>(o => o.HasKey(k => k.QuestionId));
             modelBuilder.Entity<Question>().Property(p => p.QuestionId).HasDefaultValueSql("nextval('\"QuestionId\"')");
 
-            modelBuilder.Entity<Question>().HasData(new Question() 
+            modelBuilder.Entity<Question>().HasData(new Question()
             {
                 QuestionId = 1,
                 QuestionText = "This is a test question",
