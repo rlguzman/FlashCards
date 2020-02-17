@@ -1,0 +1,57 @@
+# FlashCard :: docker-compose
+
+networks:
+  front_end:
+  service_localhost:
+
+services:
+  flashCard_client:
+    build:
+      args:
+        - NGINX_VERSION=alpine
+        - NODE_VERSION=latest
+      context: ./FlashCard/
+      dockerfile: ../.docker/client.dockerfile
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    image: flashcard_client
+    networks:
+      - front_end
+    ports:
+      - 4200:80
+      - 4201:443
+    restart: on-failure
+
+
+# FlashCard.Service :: docker-compose
+
+
+  flashCard_api:
+    build:
+      context: ./
+      dockerfile: .docker/service.dockerfile
+    depends_on:
+      - flashCard_data
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    environment:
+      ConnectionStrings__AccountDb: 'Host=flashCard_data;Database=postgres;Username=postgres;Password=postgres'
+    image: flashcard_api
+    networks:
+      - front_end
+      - service_localhost
+    ports:
+      - 5000:80
+      - 5001:443
+    restart: on-failure
+
+  flashCard_data:
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+    image: postgres:alpine
+    networks:
+      - service_localhost
+
+version: '3.7'
