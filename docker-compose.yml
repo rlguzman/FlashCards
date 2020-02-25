@@ -6,16 +6,10 @@ networks:
 
 services:
   flashCard_client:
-    build:
-      args:
-        - NGINX_VERSION=alpine
-        - NODE_VERSION=latest
-      context: ./FlashCard/
-      dockerfile: ../.docker/client.dockerfile
     dns:
       - 1.1.1.1
       - 1.0.0.1
-    image: flashcard_client
+    image: rlguzman/flashcard_client:dev
     networks:
       - front_end
     ports:
@@ -28,9 +22,6 @@ services:
 
 
   flashCard_api:
-    build:
-      context: ./
-      dockerfile: .docker/service.dockerfile
     depends_on:
       - flashCard_data
     dns:
@@ -38,7 +29,7 @@ services:
       - 1.0.0.1
     environment:
       ConnectionStrings__AccountDb: 'Host=flashCard_data;Database=postgres;Username=postgres;Password=postgres'
-    image: flashcard_api
+    image: rlguzman/flashcard_api:dev
     networks:
       - front_end
       - service_localhost
